@@ -1,0 +1,1397 @@
+URL,Method code,Filename,Function,Commit Count
+https://github.com/AbdullahWali/Battle-Chess-Game,"public void move( int curX, int curY, int tarX, int tarY ){
+        Piece selectedPiece = gameBoard.getPiece(curX,curY);
+
+        if (selectedPiece == null)
+            return;
+        if (!selectedPiece.isValid(curX,curY,tarX, tarY))
+            return;
+        if (getTurn() != selectedPiece.getColor())
+            return;
+        if(checkPath(curX, curY, tarX, tarY))
+            return;
+
+        gameBoard.movePiece(curX, curY, tarX, tarY);
+        endTurn(); 
+    }",GameManager.java,move,5
+https://github.com/Aghajari/Chess,"private void move(ChessPiece piece, int endX, int endY) {
+        AlgebraicNotation.MoveData moveData =
+                new AlgebraicNotation.MoveData(
+                        piece,
+                        endX,
+                        endY
+                );
+
+        ChessPiece replace = getPiece(endX, endY);
+        if (replace != null && replace != ChessPiece.UNDEFINED) {
+            onCapture(replace);
+            moveData.setCapture(true);
+
+        }",ChessBoard.java,move,1
+https://github.com/AlexWang18/Chess,"public void move() {
+
+        if (piecekilled != null) {
+                end.setPiece(piecemoved);
+                start.setPiece(null); 
+                System.out.println(piecekilled.getColor()+""'s "" + piecekilled.getType().name() + "" has been captured by ""+piecemoved.getColor()+""'s "" + piecemoved.getType().name());
+                if(piecekilled.getType() != PieceType.KING)
+                    piecekilled.setType(PieceType.CAPTURED); //changing this memory boxes type effectively should i do this could have repruccssions l8r
+        }",Move.java,move,49
+https://github.com/AndreaZavatta/OOP21-Chess,"public boolean move(final Position pos, final Chessboard board) {
+        final List<Position> l = this.getAdvancedControls().moveInCheck(board, this, this.getAllPossiblePositions(this, board));
+        return l.contains(pos);
+    }",AbstractPiece.java,move,1
+https://github.com/AnirudhM1/CS-F213-Chess,"
+    public Move(Square start, Square end) {
+        startSquare = start;
+        endSquare = end;
+    }",Move.java,Move,7
+https://github.com/AnotherGoat/teal-chess,"public record Move(MoveType type, int source, int destination, @Nullable PromotionChoice promotionChoice) {
+
+    /**
+     * The two steps done during a white short castle.
+     * The first one moves the king 2 steps to the right, the second one moves the rook to protect the king.
+     */
+    public static final List<Move> WHITE_SHORT_CASTLE_STEPS =
+            List.of(new Move(SHORT_CASTLE, e1, g1), new Move(NORMAL, h1, f1));
+    /**
+     * The two steps done during a white long castle.
+     * The first one moves the king 3 steps to the left, the second one moves the rook to protect the king.
+     */
+    public static final List<Move> WHITE_LONG_CASTLE_STEPS =
+            List.of(new Move(LONG_CASTLE, e1, c1), new Move(NORMAL, a1, d1));
+    /**
+     * The two steps done during a black short castle.
+     * The first one moves the king 2 steps to the right, the second one moves the rook to protect the king.
+     */
+    public static final List<Move> BLACK_SHORT_CASTLE_STEPS =
+            List.of(new Move(SHORT_CASTLE, e8, g8), new Move(NORMAL, h8, f8));
+    /**
+     * The two steps done during a black long castle.
+     * The first one moves the king 3 steps to the left, the second one moves the rook to protect the king.
+     */
+    public static final List<Move> BLACK_LONG_CASTLE_STEPS =
+            List.of(new Move(LONG_CASTLE, e8, c8), new Move(NORMAL, a8, d8));
+
+    public Move(MoveType type, int source, int destination) {
+        this(type, source, destination, null);
+    }",Move.java,Move,138
+https://github.com/CSC207-2022F-UofT/course-project-chmess,"
+    public Move (Piece piece, int[] destination, boolean isPawnDouble, boolean isCapture) {
+        this.piece = piece;
+        this.destination = destination;
+        this.isPawnDouble = isPawnDouble;
+        this.isCapture = isCapture;
+    }",Move.java,Move,19
+https://github.com/ColinGJohnson/multiplayer-chess,"public boolean move(boolean whitePieces, String moveCode) {
+        Player source = (whitePieces) ? white : black;
+        return movePiece(source, moveCode, board);
+    }",ChessGame.java,move,4
+https://github.com/DAMNinc/damnchess,"public void move(Piece piece, byte to) {
+		byte pieceToMove = piece.getType();
+		Move lastMove = boardData.movePiece(piece, to);
+		String history = generateHistory(chessFrame.getChessboard().big2small(lastMove.getFrom()), chessFrame.getChessboard().big2small(lastMove.getTo()), pieceToMove, lastMove.getTakenPiece());
+		lastMove.setMoveHistory(history);
+		chessFrame.addHistorik(history);
+		chessFrame.getChessboard().reloadBoard();
+	}",Datalink.java,move,2
+https://github.com/Dpk417182/ChessJavaEdition,"
+    private Move(final Board board,
+                 final Piece movedPiece,
+                 final int destinationCoordinate) {
+        this.board = board;
+        this.movedPiece = movedPiece;
+        this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = movedPiece.isFirstMove();
+    }",Move.java,Move,8
+https://github.com/Duzhinsky/chess,"
+    public Move(String id, MoveType type, Figure figure, Position to) {
+        this.id = id;
+        this.type = type;
+        this.figure = figure;
+        this.to = to;
+    }",Move.java,Move,5
+https://github.com/EVP-11-csapat/evp-chess-1-5,"public void move(Vector2 from, Vector2 to) {
+        board.elements[to.x][to.y] = board.at(from);
+        board.elements[from.x][from.y] = new BoardElement();
+
+        previousAttacks = new HashMap<>();
+        previousAttacks = calculateMoveMap(true);
+        if (nextPlayer == Piece.Color.WHITE) nextPlayer = Piece.Color.BLACK;
+        else nextPlayer = Piece.Color.WHITE;
+        possibleMoves = calculateMoveMap(false);
+    }",Engine.java,move,67
+https://github.com/EpicGamer007/Chess,"private void move(Location from, Location to, boolean changeMoved) {
+		if(changeMoved) fromLocation(from).setMoved(true);
+        board[to.x][to.y] = fromLocation(from);
+		fromLocation(to).setLocation(to);
+		board[from.x][from.y] = null;
+	}",Board.java,move,4
+https://github.com/Fejiroisaacs/Chess_CS106_project,"public void move(int xPos, int yPos, Board board) {
+
+        // can only En passant **this** pawn on first move if it moves two squares up
+        if(this.firstMove && Math.abs(yPos - this.yPos) == 2) this.enPassantMove=true;
+        else if(!this.firstMove) this.enPassantMove=false; // can't En passant after the first move
+
+        if(xPos != this.xPos) throw new IllegalArgumentException(""Pawn cannot move diagonally, are you trying to capture?"");
+
+        if(canMove(xPos, yPos, board) && board.getBoard()[yPos-1][xPos-1] == null){
+            this.firstMove = false;
+            moveHelper(xPos, yPos, board);
+        }",Pawn.java,move,19
+https://github.com/Forestf90/Chess,"
+    public Move(Position pos1, Position pos2) {
+        start = pos1;
+        end = pos2;
+    }",Move.java,Move,1
+https://github.com/Fruithut/Chess-Connoisseurs,"
+    private Move(Board board, Piece movedPiece, Coordinate destinationCoordinate) {
+        this.board = board;
+        this.movedPiece = movedPiece;
+        this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = movedPiece.isFirstMove();
+    }",Move.java,Move,34
+https://github.com/Garee/jchess,"
+  public Move( int from, int to ) {
+    this.from = from;
+    this.to = to;
+  }",Move.java,Move,1
+https://github.com/GervinFung/LibGDX-Chess-Game,"
+    private Move(final Board board, final Piece movePiece, final int destinationCoordinate) {
+        this.board = board;
+        this.movePiece = movePiece;
+        this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = movePiece != null && movePiece.isFirstMove();
+    }",Move.java,Move,14
+https://github.com/GervinFung/SimpleParallelChessAI,"
+    private Move(final Board board, final Piece movePiece, final int destinationCoordinate) {
+        this.board = board;
+        this.movePiece = movePiece;
+        this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = movePiece.isFirstMove();
+    }",Move.java,Move,30
+https://github.com/GnikDroy/chess,"public boolean move(Coordinate c1, Coordinate c2) {
+		
+		Square s1 = board.getSquare(c1);
+		Square s2 = board.getSquare(c2);
+		
+		// If the player tries to move a empty square.
+				if (!s1.isOccupied()) {
+					return false;
+				}",BoardManager.java,move,15
+https://github.com/Heiaha/WeiawagaJ,"
+    public Move(int from, int to, int flags){
+        move = (flags << 12) | (from << 6) | to;
+    }",Move.java,Move,35
+https://github.com/HuajiStudio/ChessMaster,"public void move(ChessObject chess, BoardPos dest) {
+		Observable.just(new Move(chess.pos, dest, chess, this)).filter(ChessHelper::canMove).subscribe(move -> {
+			ChessObject chess1 = chessObjects.get(move.origin);
+			chess1.pos = move.end;
+			chessObjects.put(move.end, chess1);
+			chessObjects.remove(move.origin);
+		}",Board.java,move,8
+https://github.com/JosephPrichard/ChessLite,"
+    public Move(int oldrow, int oldcol, int newrow, int newcol, Piece moved, byte[][] boardIn, 
+            boolean canKingSideCastleIn, boolean canQueenSideCastleIn, boolean forWhite) {
+        oldPos[0] = oldrow;
+        oldPos[1] = oldcol;
+        newPos[0] = newrow;
+        newPos[1] = newcol;
+	pieceMoved = moved;
+        castleStatus = NO_CASTLE;
+        board = boardIn;   
+        canKingSideCastle = canKingSideCastleIn;
+        canQueenSideCastle = canQueenSideCastleIn;
+        notation = calcPiecePrefix(pieceMoved,oldPos,newPos) + getCharacterNotation(newPos[1]) + (newPos[0]+1);
+        if(forWhite) {
+            if(moved.getTile().getCol() == Game.LOWER_BOUNDARY && moved.getTile().getRow() == Game.LOWER_BOUNDARY) {
+                canQueenSideCastle = false;
+            }",Move.java,Move,8
+https://github.com/KaganBaldiran/Chessjava,"public void Move(int newX, int newY) {
+
+        for (int i = 0; i < this.CurrentGameBoard.Tiles.size(); i++)
+        {
+            if (this.CurrentGameBoard.Tiles.get(i).TileCollisionBox.CheckCollisionBoxMouse(this.CurrentMouseListenerReference.GetMousePos()))
+            {
+                System.out.println(""COLLISION SPOTTED ! TILE LOCATION X: ""+ this.CurrentGameBoard.Tiles.get(i).Tilecoordinates.x + "" Y: ""+ this.CurrentGameBoard.Tiles.get(i).Tilecoordinates.y + ""EMPTY: ""+  this.CurrentGameBoard.Tiles.get(i).isTileEmpty());
+                System.out.println(""MOUSE LOCATION X: ""+ this.CurrentMouseListenerReference.GetMousePos().x + "" Y: ""+ this.CurrentMouseListenerReference.GetMousePos().y );
+
+                if (this.CurrentMouseListenerReference.isReleased(MouseEvent.BUTTON1))
+                {
+                    this.IsPieceHoveringClick = true;
+                }",Rook.java,Move,7
+https://github.com/KarnaaMistry/android-chess,"public void move(Board chessboard, int[] dest) {
+		
+		int r1 = this.getCoords()[0];
+		int c1 = this.getCoords()[1];
+		int r2 = dest[0];
+		int c2 = dest[1];
+		
+		if (this.getColor().compareTo(""white"") == 0) {
+			if (r2 == 3 && c1 == c2 && this.firstMove && chessboard.positions[r2][c2].getName().equals(""na"") && chessboard.positions[r2-1][c2].getName().equals(""na"")) {
+				chessboard.positions[r2][c2] = this;
+				this.setCoords(r2, c2);
+				chessboard.positions[r1][c1] = new Blank(new int[] {r1,c1}",Pawn.java,move,4
+https://github.com/KozlovDM/Chess,"public void move(Move move) {
+        side = Pieces.inverse(side);
+        removePiece(move.getFrom(), move.getAttackerType(), move.getAttackerSide());
+        addPiece(move.getTo(), move.getAttackerType(), move.getAttackerSide());
+        if (move.getDefenderType() != -1) {
+            removePiece(move.getTo(), move.getDefenderType(), move.getDefenderSide());
+        }",Position.java,move,1
+https://github.com/Layheng-Hok/Jungle-Chess,"
+    private Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
+        this.board = board;
+        this.movedPiece = movedPiece;
+        this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = movedPiece.isFirstMove();
+    }",Move.java,Move,38
+https://github.com/LazoCoder/Chess,"
+    void move (Position position, int x, int y) {
+
+        HashSet<Position> hashSet = board.get(position).getAllPossibleMoves(position);
+        Position destination = new Position(x, y);
+
+        if (!hashSet.contains(destination)) {
+            return;
+        }",MovementHandler.java,move,1
+https://github.com/Leonardpepa/Chess-game,"public void move(int x, int y) {
+		if (active != null) {
+			if (active.makeMove(x, y, board)) {
+				tryToPromote(active);
+				changeSide();
+				active = null;
+			}",Game.java,move,52
+https://github.com/M0r13n/socket-chess,"public GameModelMessage move(@DestinationVariable Long id, MoveMessage move) {
+        GameModel game = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        logger.info(""Client with uuid "" + move.getUuid() + "" moves."");
+
+
+        boolean moveMade = game.makeMove(move.getFrom(), move.getTo(), move.getUuid());
+
+        logger.info(moveMade ? ""Move is legal"" : ""Move is illegal"");
+        repository.save(game);
+        return new GameModelMessage(game);
+    }",GameController.java,move,5
+https://github.com/MagicKriss/Chess-Trainer,"static boolean move(Player player, Square fromSquare, Square toSquare, int iter) {
+
+        // TODO
+        // need to handle moves when king is under check
+        Piece pieceToMove;
+        if (player != null && player.getColor() == playerToMove.getColor() && fromSquare.isOccupied()) {
+            pieceToMove = fromSquare.getPiece();
+            if (pieceToMove.getColor() == player.getColor() && pieceToMove.getMoves().contains(toSquare)) {
+                if (fromSquare.equals(levelMoveList.get(iter).getFromSquare()) && toSquare.equals(levelMoveList.get(iter).getToSquare())) {
+                    toSquare.setPieceOnSquare(pieceToMove);
+                    fromSquare.removePiece();
+                    fromSquare.toggleOccupied();
+                    if (!pieceToMove.getHasMoved()) {
+                        pieceToMove.setHasMoved();
+                    }",Game.java,move,13
+https://github.com/MahamdiAmine/JAVA-chess-app,"
+    private Move(Board board, Piece movedPiece, int destinationCoordinate) {
+        this.board = board;
+        this.movedPiece = movedPiece;
+        this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = movedPiece.isFirstMove();
+    }",Move.java,Move,11
+https://github.com/Microwonk/Chess-Engine,"
+    private Move (final Board board
+            , final Piece piece
+            , final int destinationCoordinate) {
+        this.board = board;
+        this.piece = Objects.requireNonNull(piece);
+        this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = true;
+    }",Move.java,Move,26
+https://github.com/MitchellGray100/Chess,"public boolean move(int x, int y, int r, int c) {
+
+		Scanner scan = new Scanner(System.in);
+		boolean repeat = true;
+		piecesPackage.Piece.Type type = piecesPackage.Piece.Type.QUEEN;
+
+		if (board.squareInfo(x, y).getType() == piecesPackage.Piece.Type.PAWN && (r == 0 || r == 7)) {
+			while (repeat) {
+				System.out.println(""What piece would you like your pawn to promote to? Knight/Bishop/Rook/Queen: "");
+
+				switch (scan.nextLine().toLowerCase()) {
+				case ""knight"":
+					type = piecesPackage.Piece.Type.KNIGHT;
+					repeat = false;
+					break;
+				case ""bishop"":
+					type = piecesPackage.Piece.Type.BISHOP;
+					repeat = false;
+					break;
+				case ""rook"":
+					type = piecesPackage.Piece.Type.ROOK;
+					repeat = false;
+					break;
+				case ""queen"":
+					type = piecesPackage.Piece.Type.QUEEN;
+					repeat = false;
+					break;
+				default:
+					System.out.println(""Enter a valid piece."");
+					break;
+
+				}",ControllerImpl.java,move,9
+https://github.com/MrMystery10-del/ChessEngine,"        public Move(int fromRow, int fromCol, int toRow, int toCol, byte capturedPiece) {
+//            this.fromRow = fromRow;
+//            this.fromCol = fromCol;
+//            this.toRow = toRow;
+//            this.toCol = toCol;
+//            this.capturedPiece = capturedPiece;
+//        }",Nooby.java,Move,6
+https://github.com/NeoWu1216/chess,"public void move() {
+		this.hasMoved = true;
+	}",Piece.java,move,2
+https://github.com/OrangoMango/Chess,"public boolean move(String pos1, String pos){
+		if (pos1 == null || pos == null) return false;
+		int[] p1 = convertNotation(pos1);
+		
+		Piece piece = this.board[p1[0]][p1[1]];
+		if (piece == null || piece.getColor() != this.player) return false;
+		
+		List<String> legalMoves = getLegalMoves(piece);
+		if (legalMoves.contains(pos)){
+			int[] p2 = convertNotation(pos);
+			
+			Piece[][] backup = createBackup();
+			List<Piece> identical = new ArrayList<>();
+			for (Piece p : getPiecesOnBoard()){
+				if (p != piece && p.getType() == piece.getType() && p.getColor() == piece.getColor() && (p.getType().getName() != Piece.PIECE_BISHOP || p.getX()+8*p.getY() % 2 == piece.getX()+8*piece.getY() % 2)){
+					if (getValidMoves(p).contains(pos)) identical.add(p);
+				}",Board.java,move,25
+https://github.com/Oziomajnr/PgnToGif,"
+    public Move(String move, Side side) {
+        this(Square.valueOf(move.substring(0, 2).toUpperCase()),
+                Square.valueOf(move.substring(2, 4).toUpperCase()),
+                move.length() < 5 ? Piece.NONE : Side.WHITE.equals(side) ?
+                        Constants.getPieceByNotation(
+                                move.substring(4, 5).toUpperCase()) :
+                        Constants.getPieceByNotation(
+                                move.substring(4, 5).toLowerCase()));
+    }",Move.java,Move,6
+https://github.com/Querz/chess,"public Figure move(ChessField field, boolean graphic) {
+		Figure killedFigure = field.getFigure();
+		field.setFigure(this, graphic);
+		if (this.field != null) {
+			this.field.setFigure(null, graphic);
+		}",Figure.java,move,2
+https://github.com/Request01/Chess,"public void move (int deltaX, int deltaY) {
+        bounds.translate(deltaX, deltaY);
+    }",Tile.java,move,1
+https://github.com/RyanLauQF/BLANK-Chess,"
+    public Move(Board board, short encodedMove){
+        this.board = board;
+        this.encodedMove = encodedMove;
+        this.startPosition = MoveGenerator.getStart(encodedMove);
+        this.endPosition = MoveGenerator.getEnd(encodedMove);
+        this.moveType = MoveGenerator.getMoveType(encodedMove);
+        this.pawnPromotion = MoveGenerator.isPromotion(encodedMove);
+        this.attackedPiece = null;
+
+        // to reset enpassant and castling rights during unMove
+        this.previousEnpassantPosition = board.getEnpassant();
+        this.isEnpassant = false;
+        this.kingLostCastling = false;
+        this.rookLostCastling = false;
+        this.whiteKingSideCastling = board.getWhiteKingSideCastle();
+        this.whiteQueenSideCastling = board.getWhiteQueenSideCastle();
+        this.blackKingSideCastling = board.getBlackKingSideCastle();
+        this.blackQueenSideCastling = board.getBlackQueenSideCastle();
+
+        this.previousMove = board.getPreviousMove();
+        this.zobrist = board.getZobristHash();
+        this.fullMoveNumber = board.getFullMoveNum();
+        this.halfMoveClock = board.getHalfMoveClock();
+    }",Move.java,Move,18
+https://github.com/SamQuigley/ChessAIAgent,"
+  public Move(Square x, Square y){
+    start = x;
+    landing = y;
+  }",Move.java,Move,2
+https://github.com/SchlachtenSchach/SchlachtenSchach,"public void move(Position oldPosition, Position newPosition) {
+        Piece old = fields[oldPosition.x][oldPosition.y];
+
+		if (isLegalMove(newPosition)) {
+			lastSelectedPiecePos = newPosition;
+			//System.out.println(""move from ""+oldPosition+"" to ""+newPosition);
+            fields[newPosition.x][newPosition.y] = old;
+			fields[oldPosition.x][oldPosition.y] = null;
+
+			if (old instanceof Knight) {
+				Knight k = (Knight) old;
+                k.hasMoved = true;
+            }",BoardLogic.java,move,2
+https://github.com/SexySparrow/Chess-Bot,"public int move(Piece[][] board, int poz_i, int poz_j) {
+        if(this.color)
+            return moveWhite(board,poz_i,poz_j);
+        return moveBlack(board,poz_i,poz_j);
+    }",Pawn.java,move,3
+https://github.com/Superchen17/chess,"
+  public Move(String descr){
+    if(descr.length() != 4){
+      throw new IllegalArgumentException(""move only accept string with length of 4"");
+    }",Move.java,Move,2
+https://github.com/ThomasBechMadsen/ChessAI,"public void move(Position oldPosition, Position newPosition){
+		board[newPosition.x][newPosition.y] = board[oldPosition.x][oldPosition.y];
+		board[oldPosition.x][oldPosition.y] = null;
+	}",Board.java,move,18
+https://github.com/Tressos-Aristomenis/Chess-JavaFX-from-scratch,"private void move(final Tile newTile, final int rowClicked, final int colClicked) {
+        Piece destination = newTile.removePiece();
+        Piece start = startTile.removePiece();
+        final int startRow = getRow(startTile);
+        final int startColumn = getColumn(startTile);
+        
+        removePieceImagesAfterMove(start, destination, rowClicked, colClicked);
+        
+        newTile.setPiece(start);
+        startTile.setPiece(null);
+        start.isMoved(true);
+        
+        
+        if (newTile.getPiece() instanceof King && Math.abs(getColumn(newTile) - startColumn) == 2) {
+            applyCastlingMove(startRow, startColumn, newTile);
+        }",ChessBoard.java,move,3
+https://github.com/ViktorC/DETROID,"
+  public Move(byte from, byte to, byte movedPiece, byte capturedPiece, byte type) {
+    this.from = from;
+    this.to = to;
+    this.movedPiece = movedPiece;
+    this.capturedPiece = capturedPiece;
+    this.type = type;
+  }",Move.java,Move,6
+https://github.com/amir650/BlackWidow-Chess,"
+    public Move(final Board board,
+                final int currentCoordinate,
+                final int destinationCoordinate,
+                final Piece pieceMoved) {
+        this.board = board;
+        this.currentCoordinate = currentCoordinate;
+        this.destinationCoordinate = destinationCoordinate;
+        this.movedPiece = pieceMoved;
+        this.isFirstMove = pieceMoved.isFirstMove();
+    }",Move.java,Move,56
+https://github.com/amirshukayev/chess,"public void move (Coord start, Coord end) {
+
+        Piece p  = board[start.x][start.y];
+
+        board[start.x][start.y] = new Empty(start.x, start.y);
+        board[end.x][end.y] = p;
+
+    }",Board.java,move,12
+https://github.com/andreasvida/swtchess,"
+    public Move(String lan, int depth, Strength strength, int pv, String continuation[]) {
+        this.lan = lan;
+        this.depth = depth;
+        this.strength = strength;
+        this.pv = pv;
+        this.continuation = continuation;
+    }",Move.java,Move,2
+https://github.com/ankurg22/shatranjava,"
+    private Move(final Board board,
+                 final Piece pieceMoved,
+                 final Coordinate destinationCoordinate) {
+        mBoard = board;
+        mPieceMoved = pieceMoved;
+        mDestinationCoordinate = destinationCoordinate;
+        isFirstMove = mPieceMoved.isFirstMove();
+    }",Move.java,Move,24
+https://github.com/anomaly2104/chess-low-level-system-design,"public void move(Cell toCell, Board board) {
+        List<Cell> nextPossibleCells = nextPossibleCells(board);
+        if (!nextPossibleCells.contains(toCell)) {
+            throw new InvalidMoveException();
+        }",Piece.java,move,6
+https://github.com/arianomidi/JChess,"
+    public Move(String move, Side side) {
+        this(Square.valueOf(move.substring(0, 2).toUpperCase()),
+                Square.valueOf(move.substring(2, 4).toUpperCase()),
+                move.length() < 5 ? Piece.NONE : Side.WHITE.equals(side) ?
+                        Constants.getPieceByNotation(
+                                move.substring(4, 5).toUpperCase()) :
+                        Constants.getPieceByNotation(
+                                move.substring(4, 5).toLowerCase()));
+    }",Move.java,Move,48
+https://github.com/asdfjkl/jerry,"
+    public Move(int fromColumn, int fromRow, int toColumn, int toRow, char promotionPiece) {
+
+        //System.out.println(""from col: ""+fromColumn + "" tocol: ""+toColumn);
+        //System.out.println(""from row: ""+fromRow + "" torow: ""+toRow);
+        this.from = ((fromRow + 2) * 10) + (fromColumn + 1);
+        this.to = ((toRow + 2) * 10) + (toColumn + 1);
+
+        //System.out.println(""intfrom: ""+this.from);
+        //System.out.println(""intto: ""+this.to);
+
+
+        this.promotionPiece = -1;
+        if (promotionPiece == 'N') {
+            this.promotionPiece = CONSTANTS.KNIGHT;
+        }",Move.java,Move,36
+https://github.com/asdfjkl/jerry_tmp,"
+    public Move(int fromColumn, int fromRow, int toColumn, int toRow, char promotionPiece) {
+
+        //System.out.println(""from col: ""+fromColumn + "" tocol: ""+toColumn);
+        //System.out.println(""from row: ""+fromRow + "" torow: ""+toRow);
+        this.from = ((fromRow + 2) * 10) + (fromColumn + 1);
+        this.to = ((toRow + 2) * 10) + (toColumn + 1);
+
+        //System.out.println(""intfrom: ""+this.from);
+        //System.out.println(""intto: ""+this.to);
+
+
+        this.promotionPiece = -1;
+        if (promotionPiece == 'N') {
+            this.promotionPiece = CONSTANTS.KNIGHT;
+        }",Move.java,Move,6
+https://github.com/asemchenko/reverse-chess,"public void move(int charOffset, int numericOffset) {
+        setNumericPosition(getNumericPosition() + numericOffset);
+        setCharPosition(getCharPosition() + charOffset);
+    }",Position.java,move,3
+https://github.com/bagaturchess/Bagatur,"public void move(int move, int color) {
+		
+		int pieceType = board.getMoveOps().getFigureType(move);
+		int fromFieldID = board.getMoveOps().getFromFieldID(move);
+		int toFieldID = board.getMoveOps().getToFieldID(move);
+		
+		//if (Properties.DUMP_CASTLING) System.out.println(""NNUE_Input.MOVE="" + board.getMoveOps().moveToString(move));
+		
+		setInputAt(color, pieceType, fromFieldID, 0);
+		if (!board.getMoveOps().isPromotion(move)) setInputAt(color, pieceType, toFieldID, 1);
+		
+		
+		if (board.getMoveOps().isEnpassant(move)) {
+			
+			int ep_index = board.getEnpassantSquareID();
+			int captured_pawn_index = ep_index + (((1 - color) == 0) ? 8 : -8);
+			
+			setInputAt(1 - color, Constants.TYPE_PAWN, captured_pawn_index, 0);
+		
+		}",NNUE_Input.java,move,13
+https://github.com/bkthomps/Ajedrez,"
+    private Move() {
+        throw new IllegalStateException(""Disable default constructor"");
+    }",Move.java,Move,4
+https://github.com/bkthomps/Chess,"private void move(Point start, Point end, Piece me) {
+        if (Chess.board[(int) end.getY()][(int) end.getX()] != null || me.getClass() == Pawn.class) {
+            drawCounter = 0;
+            boardHistory.clear();
+            enPassantHistory.clear();
+            canCastleHistory.clear();
+        }",GameState.java,move,36
+https://github.com/bvongunten/tiffanys,"
+    public Move(String from, String to, Piece promotion) {
+        this(BoardUtil.coordToField(from), BoardUtil.coordToField(to));
+        this.promotion = promotion;
+    }",Move.java,Move,10
+https://github.com/chriskormaris/MyChessGame,"
+    public Move(String startingPosition, String endingPosition, double value) {
+        this.positions = new ArrayList<String>();
+        this.positions.add(new String(startingPosition));
+        this.positions.add(new String(endingPosition));
+        this.value = value;
+    }",Move.java,Move,28
+https://github.com/christoff-buerger/pmChess,"static int move(final int turn) { // Move number the given ply is part of.
+		return turn % 2 == 0 ? turn / 2 : (turn / 2) + 1;
+	}",Board.java,move,12
+https://github.com/coding-parrot/chess-engine,"
+    private Move(Piece piece, Cell target, boolean captureMove, Cell captureCell, PieceType promoteTo, final int id) {
+        count++;
+        this.piece = piece;
+        this.target = target;
+        this.captureMove = captureMove;
+        this.captureCell = captureCell;
+        this.promoteTo = promoteTo;
+        this.id = id;
+    }",Move.java,Move,1
+https://github.com/coenvk/ChessGame,"
+    public Move(Board board, Piece piece, int destination, Piece attackedPiece) {
+        this.piece = piece;
+        this.start = piece.getIndex();
+        this.destination = destination;
+        this.attackedPiece = attackedPiece;
+        this.status = MoveResult.UNTRIED;
+        this.board = board;
+        this.checkedMove = false;
+        this.checkMateMove = false;
+    }",Move.java,Move,7
+https://github.com/cosic/android-chess-view,"
+    public Move(int num,
+                String piece,
+                String fen,
+                String from,
+                String to,
+                String san,
+                String turn,
+                boolean isSelected) {
+
+        this.num = num;
+        this.piece = piece;
+        this.fen = fen;
+        this.from = from;
+        this.to = to;
+        this.san = san;
+        this.turn = turn;
+        this.isSelected = isSelected;
+    }",Move.java,Move,1
+https://github.com/d-stolarski/Chess,"
+    private Move(final Board board,
+                 final Piece movedPiece,
+                 final int destinationCoordinate) {
+        this.board = board;
+        this.movedPiece = movedPiece;
+        this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = movedPiece.isFirstMove();
+    }",Move.java,Move,49
+https://github.com/dantemazza/desktop-chess,"public void move(Piece piece, Vector place) {     
+		if((this.isOccupied(place) && this.getSquare(place).side == piece.side) ||
+			(this.isATestBoard == false && (whoseTurn == 1 && piece.side == black) || (whoseTurn == -1 && piece.side == white)))
+			 return;
+		
+		 if(!isATestBoard && moveCount > 0) 
+			 if(this.validateMove(piece, place, true)) return;
+		
+		 
+		 	if(piece.getClass().getName().equals(""chess.King"")) { 
+				if(inCheck && Math.abs(piece.getPosition().getX()-place.getX()) == 2) return;
+		 		if((piece.getPosition().getX() - place.getX()) == -2) { 
+		 			switch(piece.sideOfBoard) {
+		 			case(""Top""):{
+		 			 if(!(this.getSquare(7,7).hasMoved == false && this.getSquare(6,7) == null &&
+		 				  this.getSquare(5,7) == null)) return;
+		 			 this.castle(new Vector(7,7), true);
+		 			 break;
+		 			}",Board.java,move,14
+https://github.com/denizbilgin/Chess-Game,"public void move(String to) {
+        Square targetLocation = location.getBoard().getSquareAt(to);
+        targetLocation.setPiece(this);
+        //clear previous location
+        location.clear();
+        //update current location
+        location = targetLocation;
+        location.getBoard().nextPlayer();
+    }",Piece.java,move,1
+https://github.com/divy-07/chess-engine,"
+    public Move(int sourceRank, int sourceFile, int destRank, int destFile, char promotionPiece) {
+        this.sourceRank = sourceRank;
+        this.sourceFile = sourceFile;
+        this.destRank = destRank;
+        this.destFile = destFile;
+        this.promotionPiece = promotionPiece;
+        this.isPromotion = true;
+        this.isEnPassant = false;
+    }",Move.java,Move,9
+https://github.com/dujo09/ChessGame,"
+    public Move(Coordinate from, Coordinate to, PieceType pieceType, ChessPiece... capturedPieces){
+        this.from = from;
+        this.to = to;
+
+        rowOffset = to.getRow() - from.getRow();
+        columnOffset = to.getColumn() - from.getColumn();
+
+        isCapture = true;
+        isMoveTrigger = false;
+
+        this.capturedPieces = Arrays.asList(capturedPieces);
+        triggeredMoves = new ArrayList<>();
+
+        isFirstMove = false;
+
+        isPromotion = true;
+        this.pieceType = pieceType;
+        promotedPieceType = null;
+    }",Move.java,Move,6
+https://github.com/dylanboyling/Chess,"public boolean move(int newX, int newY) {
+        // figure out direction, up and right are positive numbers
+        int xDir = newX - x;
+        int yDir = y - newY;
+
+        // some flavor of right movement
+        if (xDir > 0) {
+            // top right diagonal
+            if (yDir > 0) {
+                for (int i = x; i < newX; i++) {
+                    for (int j = y; j > newY; j--) {
+                        // checks travel path, else it is the square we are moving to
+                        if (i + 1 != newX && j - 1 != newY && Board.getPiece(i + 1, j - 1) != null) {
+                            return false;
+                        }",Queen.java,move,3
+https://github.com/ecly/console_chess,"
+    public Move(int x, int y, boolean firstMoveOnly, boolean onTakeOnly) {
+        this. x = x;
+        this. y = y;
+        this.firstMoveOnly = firstMoveOnly;
+        this.onTakeOnly = onTakeOnly;
+    }",Move.java,Move,7
+https://github.com/emprestes/chessgame,"public void move(BoardPosition position) {
+        getBoard().put(getPosition(), null);
+        setPosition(position);
+        getBoard().put(getPosition(), this);
+    }",AbstractPiece.java,move,2
+https://github.com/eneskzlcn/Chess,"
+    public Move(Board board, Tile currentTile, Tile destinationTile) {
+        this.board = board;
+        this.currentTile = currentTile;
+        this.destinationTile = destinationTile;
+        this.movedPiece = currentTile.getPiece();
+        if (destinationTile.hasPiece()) {
+            killedPiece = destinationTile.getPiece();
+        }",Move.java,Move,6
+https://github.com/frankkopp/Chessly,"private int move(int start, int end, boolean update) {
+        assert (start & 0x88) == 0;
+        assert (end & 0x88) == 0;
+        assert board[start] != Piece.NOPIECE;
+        assert board[end] == Piece.NOPIECE;
+
+        // Get the piece
+        int piece = board[start];
+
+        // Store some variables for later use
+        int chessman = Piece.getChessman(piece);
+        int color = Piece.getColor(piece);
+
+        switch (chessman) {
+            case PieceType.PAWN:
+                pawnList[color].removePosition(start);
+                pawnList[color].addPosition(end);
+                if (update) {
+                    long[] tempZobristChessman = zobristChessman[PieceType.PAWN][color];
+                    this.pawnZobristCode ^= tempZobristChessman[start];
+                    this.pawnZobristCode ^= tempZobristChessman[end];
+                }",Position.java,move,7
+https://github.com/gameofjess/Jess,"
+    public Move(Position origin, Position destination, Position capturePosition, boolean enpassant) {
+		//log.debug(""Creating move object with enpassant"");
+        this.origin = origin;
+		this.destination = destination;
+		this.capturePosition = capturePosition;
+		this.enpassant = enpassant;
+    }",Move.java,Move,84
+https://github.com/harp077/sjce,"
+ public Move(int source, int destination, int piece) {
+  this.source = (short) source;
+  this.destination = (short) destination;
+  this.piece = (byte) piece;
+  this.captured = PiecesUI.NO_PIECE;
+  this.promoted = PiecesUI.NO_PIECE;
+ }",Move.java,Move,3
+https://github.com/haxdds/fischer,"public void move(int row1, int column1, int row2, int column2) {
+        getSquare(row2, column2).setIcon(chessBoardSquares[column1][7 - row1].getIcon());
+        chessBoardSquares[column1][7 - row1].setIcon(null);
+    }",GUI.java,move,22
+https://github.com/i7N3/vaadin-chess,"public Board move(FigureMoving fm) {
+        Board next = new Board(this.fen);
+
+        next.setFigureAt(fm.from, Figure.none);
+        next.setFigureAt(fm.to, fm.placedFigure());
+
+        next.dropEnpassant(fm);
+        next.updateEnpassant(fm);
+        next.moveCastleRook(fm);
+        next.updateCastleFlags(fm);
+
+        if (this.moveColor == Color.black)
+            next.moveNumber++;
+
+        next.moveColor = moveColor.flipColor(moveColor);
+        next.generateFen();
+        return next;
+    }",Board.java,move,8
+https://github.com/jaeheonshim/ChessBoard,"public boolean move(Spot begin, Spot end) {
+        Move move = new Move(begin, end);
+        if (begin.getPiece() instanceof King && ((King) begin.getPiece()).canCastle(this) && (end.getX() == 2 ^ end.getX() == 6)) {
+            // castling implementation
+
+            if (begin.getPiece().canMove(this, begin, end)) {
+                if (end.getX() == 2) {
+                    end.setPiece(begin.getPiece());
+                    begin.setPiece(null);
+                    Piece rook = this.getSpot(0, end.getY()).getPiece();
+                    this.getSpot(0, end.getY()).setPiece(null);
+                    this.getSpot(end.getX() + 1, end.getY()).setPiece(rook);
+
+                    moves.add(move);
+                    return true;
+                }",Board.java,move,49
+https://github.com/jagmitswami/Chess_LLD,"public boolean move(int[] current, int[] next) {
+		int[] currentPosition = currentPosition();
+		List<int[]> validMoves = validMoves(currentPosition);
+
+		if (validMoves.isEmpty()) {
+			return false;
+		}",Pawn.java,move,5
+https://github.com/jcarolus/android-chess,"public void move(int move, int duckMove) {
+        if (move(move, """", true)) {
+            Log.d(TAG, ""Performed move "" + Move.toDbgString(move));
+            if (duckMove != -1) {
+                if (this.requestDuckMove(duckMove)) {
+                    Log.d(TAG, ""Performed duck move "" + Pos.toString(duckMove));
+                }",GameApi.java,move,54
+https://github.com/jitsm555/ChessConsoleApp,"
+    public Move(int x, int y, boolean firstMoveOnly, boolean onTakeOnly) {
+        this. x = x;
+        this. y = y;
+        this.firstMoveOnly = firstMoveOnly;
+        this.onTakeOnly = onTakeOnly;
+    }",Move.java,Move,1
+https://github.com/jluispcardenas/SimpleChessAndroid,"
+    public Move(int from, int to, int score, int capture) {
+        this.from = from;
+        this.to = to;
+        this.score = score;
+        this.capture = capture;
+    }",Move.java,Move,1
+https://github.com/jpenilla/chesscraft,"private CompletableFuture<Void> move(final String move, final PieceColor color) {
+    if (color != this.nextMove) {
+      throw new IllegalArgumentException(""Wrong move"");
+    }",ChessGame.java,move,26
+https://github.com/jzyong/game-server,"static Vector3 move(float deltaTime, Vector3 currentPosition, Vector3 targetPositon, float speed) {
+		Vector3 toMoveVec = sub(targetPositon, currentPosition); // ������������
+		float distToTarget = toMoveVec.len2D();
+		toMoveVec.nor2D();
+		if (distToTarget > 0.1f) {
+			if (distToTarget > (speed * deltaTime)) {
+				toMoveVec.scl(speed * deltaTime);
+				toMoveVec.add(currentPosition);
+				float alpha = toMoveVec.len2D() / distToTarget;
+				toMoveVec.y = currentPosition.y + alpha * (targetPositon.y - currentPosition.y);
+			",Vector3.java,move,4
+https://github.com/keithradford/terminal-chess,"     public Move(String move, Player player, Board board){
+//         this.move = move;
+//         this.player = player;
+//         this.board = board;
+//     }",Move.java,Move,5
+https://github.com/keshane/Paw,"
+    private Move(Builder builder) {
+        this.destinationRank = builder.getDestinationRank();
+        this.destinationFile = builder.getDestinationFile();
+        this.sourceRank = builder.getSourceRank();
+        this.sourceFile = builder.getSourceFile();
+        this.player = builder.player;
+        this.types = builder.getTypes();
+        this.pieceType = builder.getPieceType();
+        this.promotionPieceType = builder.promotionPieceType;
+    }",Move.java,Move,7
+https://github.com/krudochess/krudo,"static void move(
+        final Move m, 
+        final Node n
+    ) {            
+        //
+        //b = eval(n);
+        int b = 0;
+        
+        //
+        int j = m.i;
+        
+        // loop throu moves and assgin values
+        while (j != 0) {
+            
+            //
+            j--;            
+                                    
+            // get moved piece
+            final int p = n.B[m.s[j]] & lo;
+                        
+            // get versus square
+            final int v = m.v[j];
+            
+            // get captured piece
+            final int x = n.B[v] & lo;
+                    
+            //
+            int w = b;
+                        
+            //
+            if (EVAL_POSITIONAL) {
+                w += pw[p][v];
+            }",Eval.java,move,7
+https://github.com/lanternbugs/lanternicc,"
+            void move() {
+                if (inplay == 0)
+                    return;
+
+//y=mx+b
+                int hit = 0;
+                inc = 5;
+                if (speed > 30)
+                    inc = 7;
+                if (speed > 75)
+                    inc = 9;
+/*if(normalspeed == 2)
+{
+if(inc == 5)
+inc=inc+3;
+else if(inc== 8)
+inc = inc + 4;
+else
+inc=inc+5;
+}",poweroutframe.java,move,1
+https://github.com/lazarchitect/ChessGUI,"public int move(int destRow, int destCol) {
+
+        int srcRow = pieceToMove.getRow();
+        int srcCol = pieceToMove.getCol();
+
+        if(pieceToMove.getType() == PieceType.Pawn &&
+                ((pieceToMove.getColor() == PieceColor.Black && destRow == 7) ||
+                (pieceToMove.getColor() == PieceColor.White && destRow == 0))){
+            // TODO PROMOTION
+            //PieceType pieceType = promptUserForChoice();
+            //pieceToMove.setType(pieceType);
+        }",Board.java,move,7
+https://github.com/ljdoig/ChessBot,"
+    public Move(Piece piece, Square to) {
+        this.board = piece.board;
+        this.piece = piece;
+        this.from = piece.square();
+        this.to = to;
+        this.taken = board.contentsAt(to);
+        this.side = piece.side;
+        this.pieceFirstMove = piece.isUnmoved();
+        this.halfmoveClockPrior = board.getHalfmoveClock();
+    }",Move.java,Move,21
+https://github.com/loloof64/ChessLibJava,"public Maybe<Position> move(BoardCell from, BoardCell to, Position position, Class<? extends PromotablePiece> promotionPiece) {
+        final int deltaX = to.file - from.file;
+        final int deltaY = to.rank - from.rank;
+        final boolean isTwoCellsJump = (whitePlayer && deltaY == 2 && deltaX == 0
+                && from.rank == BoardRank.RANK_2.ordinal()) ||
+                (!whitePlayer && deltaY == -2 && deltaX == 0 && from.rank == BoardRank.RANK_7.ordinal());
+        final BoardFile newEnPassantFile = isTwoCellsJump ? BoardFile.values()[from.file] : null;
+        final boolean isPromotion = whitePlayer ?
+                to.rank == BoardRank.RANK_8.ordinal() : to.rank == BoardRank.RANK_1.ordinal();
+
+        Board newPositionBoard = Board.fromFEN(position._board.toFEN()); // A simple way to get a copy.
+        final Piece pieceAtEndSquare = position.getPieceAt(to);
+        Piece replacingPieceForEndSquare;
+        try {
+            replacingPieceForEndSquare = isPromotion ? promotionPiece.getDeclaredConstructor(boolean.class).
+                    newInstance(whitePlayer): position.getPieceAt(from);
+
+            final BoardFile enPassantFile = position._info.enPassantFile;
+
+            final boolean isEnPassantMove =
+                    ((whitePlayer && deltaY == 1) || (!whitePlayer && deltaY == -1)) && Math.abs(deltaX) == 1 &&
+                    pieceAtEndSquare == null && enPassantFile != null && enPassantFile.ordinal() == to.file;
+
+            newPositionBoard = newPositionBoard.copy(from, null);
+            newPositionBoard = newPositionBoard.copy(to, replacingPieceForEndSquare);
+            if (isEnPassantMove) {
+                int capturedPieceRank = whitePlayer ? BoardRank.RANK_5.ordinal() : BoardRank.RANK_4.ordinal();
+                BoardCell capturedPieceCell = new BoardCell(capturedPieceRank, position._info.enPassantFile.ordinal());
+                newPositionBoard = newPositionBoard.copy(capturedPieceCell, null);
+            }",Pawn.java,move,3
+https://github.com/lostsky3000/dfactor,"public Long move(final String key, final int dbIndex) {
+    return new JedisClusterCommand<Long>(connectionHandler, maxAttempts) {
+      @Override
+      public Long execute(Jedis connection) {
+        return connection.move(key, dbIndex);
+      }",JedisCluster.java,move,1
+https://github.com/lrozenblyum/chess,"public Position move( String squareFrom, String squareTo ) {
+		final String newEnPassantFile = getNewEnPassantFile( squareFrom, squareTo );
+		final Position result = new Position( newEnPassantFile );
+
+		final Collection<String> copySet = new HashSet<String>( squaresOccupied.keySet() );
+		copySet.remove( squareFrom );
+
+		//rank only from which a pawn can execute en passant move
+		//(it's equal to rank where the opposite piece being captured is on)
+		int enPassantPossibleRank = getDoubleMoveRank( squaresOccupied.get( squareFrom ).opposite() );
+		String enPassantCapturedPieceSquare = null;
+		if ( this.enPassantFile != null &&
+			Board.rankOfSquare( squareFrom ) == enPassantPossibleRank &&
+			this.enPassantFile.equals( Board.fileOfSquare( squareTo ))) {
+			enPassantCapturedPieceSquare = this.enPassantFile + enPassantPossibleRank;
+		}",Position.java,move,568
+https://github.com/lshwayne96/cchess,"
+    public Move(long zobristKey, Piece movedPiece, Coordinate destPosition, Piece capturedPiece) {
+        this.zobristKey = zobristKey;
+        this.movedPiece = movedPiece;
+        this.destPosition = destPosition;
+        this.capturedPiece = capturedPiece;
+    }",Move.java,Move,34
+https://github.com/macsmol/machess,"
+    void move(Content piece, Square from, Square to) {
+        Square[] movingPieces = null;
+        int movingPiecesCount = 0;
+        switch (piece) {
+            case WHITE_PAWN:
+                movingPieces = whitePawns;
+                movingPiecesCount = whitePawnsCount;
+                break;
+            case BLACK_PAWN:
+                movingPieces = blackPawns;
+                movingPiecesCount = blackPawnsCount;
+                break;
+            case WHITE_KNIGHT:
+                movingPieces = whiteKnights;
+                movingPiecesCount = whiteKnightsCount;
+                break;
+            case BLACK_KNIGHT:
+                movingPieces = blackKnights;
+                movingPiecesCount = blackKnightsCount;
+                break;
+            case WHITE_BISHOP:
+                movingPieces = whiteBishops;
+                movingPiecesCount = whiteBishopsCount;
+                break;
+            case BLACK_BISHOP:
+                movingPieces = blackBishops;
+                movingPiecesCount = blackBishopsCount;
+                break;
+            case WHITE_ROOK:
+                movingPieces = whiteRooks;
+                movingPiecesCount = whiteRooksCount;
+                break;
+            case BLACK_ROOK:
+                movingPieces = blackRooks;
+                movingPiecesCount = blackRooksCount;
+                break;
+            case WHITE_QUEEN:
+                movingPieces = whiteQueens;
+                movingPiecesCount = whiteQueensCount;
+                break;
+            case BLACK_QUEEN:
+                movingPieces = blackQueens;
+                movingPiecesCount = blackQueensCount;
+                break;
+            case WHITE_KING:
+                whiteKing = to;
+                return;
+            case BLACK_KING:
+                blackKing = to;
+                return;
+            default:
+                assert false : ""Invalid piece to move: "" + piece;
+                return;
+        }",PieceLists.java,move,7
+https://github.com/marvk/chess,"public boolean move(final Cell<ColoredPiece> source, final Cell<ColoredPiece> target) {
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        validMoves.stream().map(MoveResult::getMove).forEach(System.out::println);
+        System.out.println();
+        System.out.println(""source = "" + source);
+        System.out.println(""target = "" + target);
+
+        final Move move;
+        final Square sourceSquare = convert(source);
+        final Square targetSquare = convert(target);
+
+        System.out.println(""sourceSquare = "" + sourceSquare);
+        System.out.println(""targetSquare = "" + targetSquare);
+
+        final ColoredPiece piece = source.getState();
+        final Color color = piece.getColor();
+        final Rank targetRank = targetSquare.getRank();
+
+        final boolean pawn = piece.getPiece() == Piece.PAWN;
+
+        final boolean blackPromote = targetRank == Rank.RANK_1 && color == Color.BLACK;
+        final boolean whitePromote = targetRank == Rank.RANK_8 && color == Color.WHITE;
+
+        System.out.println(""pawn = "" + pawn);
+        System.out.println(""blackPromote = "" + blackPromote);
+        System.out.println(""whitePromote = "" + whitePromote);
+
+        if (pawn && (blackPromote || whitePromote)) {
+            move = Move.promotion(sourceSquare, targetSquare, piece, ColoredPiece.getPiece(color, Piece.QUEEN));
+        }",BoardViewModel.java,move,17
+https://github.com/mcoria/chesstango,"private void move(List<String> moves) {
+		for (String moveStr : moves) {
+			boolean findMove = false;
+			for (Move move : game.getPossibleMoves()) {
+				String encodedMoveStr = encodeMove(move);
+				if (encodedMoveStr.equals(moveStr)) {
+					game.executeMove(move);
+					findMove = true;
+					break;
+				}",Engine.java,move,3
+https://github.com/mkf/jchess3man,"
+    public Move(BoundVec<T> boundVec, GameState before) {
+        this.boundVec = boundVec;
+        this.before = before;
+    }",Move.java,Move,7
+https://github.com/obedrios/chess-repo,"public void move(String from, String to){
+        SquareBoard squareFrom = getCoordinate(from);
+        getCoordinate(to).setBoardPiece(squareFrom.getPieceCode());
+        squareFrom.setEmpty(true);
+    }",ChessBoard.java,move,1
+https://github.com/oskalbarczyk/console-chess-java,"public void move(int desCol, int desRow) {
+
+        if(canDoCastling(desCol) && isValidMove(desCol,desRow)) {
+
+            int kingNewCol, rookNewCol;
+
+            //sprawdzamy lokalizacje wie��y
+                if(desCol == 0) {
+                    kingNewCol = 2;
+                    rookNewCol = 3;
+             ",S27773Projekt02.java,move,12
+https://github.com/osmundf/chess-hub,"
+    protected Move(MoveType type, Side side, Caste promotion, Caste capture, Caste base, Square from, Square to) {
+        super(type, side, promotion, capture, base, from, to);
+        this.type = type;
+        this.side = side;
+        this.promotion = type.isPromotion() ? promotion : NONE;
+        this.capture = type.isCapture() ? capture : NONE;
+        this.base = base;
+        this.from = from;
+
+        if (type.isCastling()) {
+            this.to = getKingToSquare();
+            this.rookFromSquare = to;
+            this.rookToSquare = getRookToSquare();
+            this.revocation = getRevocation(capture, base);
+        }",Move.java,Move,8
+https://github.com/pepero8/ConsoleChess,"protected void move(Square destination) {
+		current_square = destination;
+		
+		if ()
+		System.out.println(""Pawn moved to "" + destination);
+	}",Pawn.java,move,3
+https://github.com/peterosterlund2/droidfish,"
+    public Move(int from, int to, int promoteTo, int score) {
+        this.from = from;
+        this.to = to;
+        this.promoteTo = promoteTo;
+        this.score = score;
+    }",Move.java,Move,23
+https://github.com/petrpravda/zerofish,"
+    public Move(int from, int to, int flags){
+        bits = (short) (flags | (from << 6) | to);
+    }",Move.java,Move,20
+https://github.com/philleski/tactician,"public void move(Move move) {
+    long sourceMask = 1L << move.source;
+    long destinationMask = 1L << move.destination;
+    Color turnFlipped = Color.flip(this.turn);
+
+    long sourceMaskAdvancedTwoRows;
+    if (this.turn == Color.WHITE) {
+      sourceMaskAdvancedTwoRows = sourceMask << 16;
+    }",Board.java,move,25
+https://github.com/qwercik/szachy,"
+    public Move(Position start, Position end, ChessPiece movedPiece, ChessPiece removedPiece, Position removedPiecePosition) {
+        this.start = start;
+        this.end = end;
+        this.movedPiece = movedPiece;
+        this.removedPiece = removedPiece;
+        this.removedPiecePosition = removedPiecePosition;
+    }",Move.java,Move,7
+https://github.com/rbozburun/Command_Line_Chess,"public  void move(String to){
+        Square targetLocation = location.getBoard().getSquareAt(to);
+        targetLocation.setPiece(this);
+        //clear previous location
+        location.clear();
+        //update current location
+        location = targetLocation;
+        location.getBoard().nextPlayer();
+        //piece has been moved at least once
+    }",Piece.java,move,1
+https://github.com/ripred/JavaChess,"
+    public Move(int fromCol, int fromRow, int toCol, int toRow, int value) {
+        this.fromCol = fromCol;
+        this.fromRow = fromRow;
+        this.toCol   = toCol;
+        this.toRow   = toRow;
+        this.from    = fromCol + fromRow * 8;
+        this.to      = toCol + toRow * 8;
+        this.value   = value;
+    }",Move.java,Move,8
+https://github.com/saadati944/Android_Chess,"public boolean move(int xf, int yf, int xt, int yt) {
+        Chessman tempMan = chessmen[xt][yt];
+        chessmen[xt][yt] = chessmen[xf][yf];
+        chessmen[xt][yt].setPoint(new Point(xt, yt));
+        chessmen[xf][yf] = null;
+
+        King.KingRiskType relatedKingStatus;
+        if (chessmen[xt][yt].color == Chessman.PlayerColor.White)
+            relatedKingStatus = validateKing(whiteKing);
+        else
+            relatedKingStatus = validateKing(blackKing);
+
+        if (relatedKingStatus == King.KingRiskType.Safe) {
+            if (tempMan != null)
+                kill(tempMan);
+            chessmen[xt][yt].setPoint(new Point(xt, yt));
+            chessmen[xt][yt].moveButton(xt, yt);
+            if (chessmen[xt][yt].type == Chessman.ChessmanType.Pawn)
+                ((Pawn) chessmen[xt][yt]).firstMove = false;
+            return true;
+        }",Chess.java,move,40
+https://github.com/sauce-code/chessy,"private void move(int ply) {
+		final Task<Void> task = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				System.out.println(Thread.currentThread().getName() + "" started"");
+				long timeStart = System.currentTimeMillis();
+				Platform.runLater(() -> busy.set(true)); // TODO sollte nicht sein
+				Board temp = null;
+				AtomicInteger count = new AtomicInteger();
+				temp = board.get().getMax(ply, progressProperty, multiThreaded.get(), count);
+				if (temp != null) {
+					for (int i = 0; i < ply - 1; i++) {
+						temp = temp.getPrevious();
+					}",Game.java,move,92
+https://github.com/sauce-code/cuckoo,"
+    public Move(int from, int to, int promoteTo, int score) {
+        this.from = from;
+        this.to = to;
+        this.promoteTo = promoteTo;
+        this.score = score;
+    }",Move.java,Move,3
+https://github.com/scriptjumper/Chess-Game-Engine,"
+    private Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
+        this.board = board;
+        this.movedPiece = movedPiece;
+        this.destinationCoordinate = destinationCoordinate;
+        this.isFirstMove = movedPiece.isFirstMove();
+    }",Move.java,Move,14
+https://github.com/scys12/Chaturanga,"
+    public Move(final Board board, final Piece movedPiece, final int destinationCoordinate) {
+        this.board = board;
+        this.movedPiece = movedPiece;
+        this.destinationCoordinate = destinationCoordinate;
+    }",Move.java,Move,2
+https://github.com/seanjparker/chess,"
+  public Move(String move, MoveType moveType, int player, PieceType piece, PieceType pieceCap, int longShort) {
+    this.move = move;
+    this.moveType = moveType;
+    this.player = player;
+    this.piece = piece;
+    this.pieceCap = pieceCap;
+    this.longShort = longShort;
+  }",Move.java,Move,4
+https://github.com/shayan-shojaei/chess-pgn,"
+    public Move(Square from, Square to, Piece moving, Piece captured, Piece promotion) {
+        this.to = to;
+        this.from = from;
+        this.moving = moving;
+        this.captured = captured;
+        this.promotion = promotion;
+    }",Move.java,Move,9
+https://github.com/shubhamv108/object-oriented-design,"public boolean move(Position fromPosition, Position toPosition) {
+        if (this.isInValidMove(fromPosition, toPosition))
+            throw new IllegalArgumentException(""Illegal move"");
+
+        swap(fromPosition, toPosition);
+        return true;
+    }",Board.java,move,4
+https://github.com/streblow/MateSolver,"
+    public Move(int oldX, int oldY, int newX, int newY, Piece piece){
+        this.oldX = oldX;
+        this.oldY = oldY;
+        this.newX = newX;
+        this.newY = newY;
+
+        //makes a copy of the piece and assigns it to p
+		/*
+		 * Note that a copy is used to prevent piece positions from being moved around
+		 * when the AI is making hypothetical moves
+		 */
+        if(piece.getColor() == false){ //case that piece is white
+            if(piece.getType() == ""Queen""){
+                p = new Queen(piece.getContext(), piece.getX()/piece.getSize(),piece.getY()/piece.getSize(),piece.getSize(),false);
+            }",Move.java,Move,3
+https://github.com/stwe/SgChess,"
+    public Move(Piece piece, int from, int to, PieceType capturedPieceType, PieceType promotedPieceType, SpecialMoveFlag flag) {
+        this(piece, from, to, promotedPieceType, flag);
+        setCapturedPieceType(capturedPieceType);
+    }",Move.java,Move,26
+https://github.com/teemoo7/bobby,"public void move(String gameId, String moveUci) {
+		client.bot().move(gameId, moveUci);
+	}",LichessClient.java,move,1
+https://github.com/tilosp/chess,"
+    Chessboard move(int[] from, int[] to) {
+        Move move;
+        ChessPiece[][] chessPieces = copy(this.chessPieces);
+        move = new Move(from[0], from[1], to[0], to[1], this.chessPieces[from[0]][from[1]], to[0], to[1], chessPieces[to[0]][to[1]]);
+        chessPieces[to[0]][to[1]] = this.chessPieces[from[0]][from[1]].moved(turn, Math.abs(from[1] - to[1]) > 1);
+        chessPieces[from[0]][from[1]] = null;
+        if (to.length == 4) {
+            move = new Move(from[0], from[1], to[0], to[1], this.chessPieces[from[0]][from[1]], to[2], to[3], chessPieces[to[2]][to[3]]);
+            chessPieces[to[2]][to[3]] = null;
+        }",Chessboard.java,move,9
+https://github.com/valgrut/Java-Chess-Game,"public boolean move(BoardTile dst) {
+		/*
+		if(this.canMoveTo(dst) == false)
+		{
+			return false;
+		}",AbstractPiece.java,move,4
+https://github.com/wolfraam/chess-game,"
+    public Move(final Square from, final Square to, final PieceType promotion) {
+        this.from = from;
+        this.to = to;
+        this.promotion = promotion;
+    }",Move.java,Move,6
+https://github.com/xcr1234/cnchess,"
+    public Move(int fromX, int fromY, int toX, int toY) {
+        from = new Point(fromX, fromY);
+        to = new Point(toX, toY);
+    }",Move.java,Move,2
+https://github.com/xqbase/chess,"static int MOVE(int sqSrc, int sqDst) {
+		return Position.MOVE(sqSrc, sqDst);
+	}",MoveList.java,MOVE,1
+https://github.com/ymohamedahmed/mortimer,"private void move(ArrayList<Piece> pieceList, Position oldPosition, Position newPosition, boolean repaint) {
+        Piece pieceCaptured = null;
+        PieceColor colorMoved = null;
+        System.out.println(""move"");
+        try {
+            Piece piece = Board.getPiece(pieceList, new Position(oldPosition.getRow(), oldPosition.getCol()));
+            Move move = getMove(piece.getMovesList(), newPosition);
+            colorMoved = move.getPiece().getColor();
+            System.out.println(""COLOR MOVED: "" + colorMoved);
+            //Checks if the move selected is a castling move
+            //If so changes the position of the rook based on whether
+            //it is Queenside or Kingside castling
+            if (move.isCastling()) {
+                Position rookNewPosition = null;
+                Position rookOldPosition = null;
+                if (move.getPosition().getCol() == 6) {
+                    rookNewPosition = new Position(move.getPosition().getRow(), 5);
+                    rookOldPosition = (piece.getColor() == PieceColor.WHITE) ? new Position(0, 7) : new Position(7, 7);
+                }",MainController.java,move,80
+https://github.com/zheminshao/ChessX,"public void move(Move mov) {
+		System.out.println();
+		
+		int rI = mov.getxInitial();
+		int cI = mov.getyInitial();
+		int rF = mov.getxFinal();
+		int cF = mov.getyFinal();
+		
+		System.out.println(""rI: "" + rI + ""cI: "" + cI + ""rF: "" + rF + ""cF: "" + cF);
+		//Call vars directly from Move?
+		pos.setSquare(rF, cF, pos.getSquare(rI, cI));
+		pos.setSquare(rI, cI, (byte) 0);
+		pos.setBlackToMove(!pos.isBlackToMove());
+		System.out.println(""Black to move now "" + pos.isBlackToMove());
+		//refresh();
+
+		squares[rI][cI].repaint();
+		revalidate();
+		squares[rF][cF].repaint();
+		revalidate();
+//		try {
+//			Thread.sleep(5000);
+//		}",Board.java,move,16
+https://github.com/zlmonroe/SER216Chess,"
+    void move() {
+        BoardState sameSpot = bs.move(new Point(1,1), new Point(1,1));
+        assertEquals(bs, sameSpot);
+        assertEquals(0,bs.getPieceAt(new Point(0,1)).getIdentifier());
+        BoardState newBS = bs.move(new Point(0,1),new Point(0,3));
+        assertNotEquals(null, bs.getPieceAt(new Point(0,1)));
+        assertEquals(null, newBS.getPieceAt(new Point(0,1)));
+        BoardState nnewBS = newBS.move(new Point(0, 7), new Point(0, 3));
+        assertEquals(3, nnewBS.getPieceAt(new Point(0,3)).getIdentifier());
+    }",BoardStateTest.java,move,5
+https://github.com/zucchero-sintattico/OOP20-Jhaturanga,"public MovementResult move(final BoardPosition origin, final BoardPosition destination) {
+
+        if (this.getBoardStatus().getPieceAtPosition(origin).isPresent()) {
+            final Piece piece = this.getBoardStatus().getPieceAtPosition(origin).get();
+            final MovementResult result = this.getApplicationInstance().getMatch().get()
+                    .move(new PieceMovementImpl(piece, origin, destination));
+            if (!result.equals(MovementResult.INVALID_MOVE)) {
+                this.index = this.getApplicationInstance().getMatch().get().getHistory().getAllBoards().size() - 1;
+            }",MatchControllerImpl.java,move,40
