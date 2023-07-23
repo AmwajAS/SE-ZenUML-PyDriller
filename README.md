@@ -1,4 +1,4 @@
-# __Software Seminar__
+# __Software Engineering Seminar__
 ZenUML & PyDriller
 
 ## Project Desc.
@@ -22,7 +22,7 @@ In order to answer our research question we had to integregate both tools (Pydri
 - Python
   
 ## Requirements.
-invetigate our research question by the help of these tools.
+We must investigate our research question using both tools, also the solution must be fully automated without the need for human intervention.
 
 ## WorkFolw.
 The input we enter at the beginning of the process into the PyDriller tool will be a list of urls of GitHub folders of projects dealing with needlework and written in the java language. 
