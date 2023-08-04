@@ -11,7 +11,7 @@ import ast
 
 # Note: replace 'YOUR_GITHUB_TOKEN' with your GitHub personal access token.
 headers = {
-    'Authorization': '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',
+    'Authorization': 'YOUR_GITHUB_TOKEN',
     'Accept': 'application/vnd.github.v3+json',
 }
 
